@@ -43,10 +43,7 @@ var bardata = [yr06,yr07,yr08,yr09,yr10,yr11,yr12,yr13,yr14,yr15];
 var margin = { top: 30, right:50 , bottom:40, left:50 };
 
 var height = 400 -margin.top - margin.bottom,
-    width = 700 -margin.left - margin.right;
-var colors = d3.scale.linear()
-.domain([0, bardata.length*0.33, bardata.length*0.66, bardata.length])
-.range(['#C61C6F', '#268BD2']);
+    width = 900 -margin.left - margin.right;
 
 var yScale = d3.scale.linear()
         .domain([0, 1056])
@@ -70,9 +67,7 @@ var myChart = d3.select('#change').append('svg')
     .attr('transform', 'translate('+ margin.left+','+ margin.top +')')
     .selectAll('rect').data(bardata)
     .enter().append('rect')
-        .style('fill', function(d,i) {
-            return colors(i);
-        })
+        .style('fill', '#03A9F4')
         .attr('width', xScale.rangeBand())
         .attr('height', 0)
         .attr('x', function(d,i) {
@@ -90,7 +85,7 @@ var myChart = d3.select('#change').append('svg')
         tempColor = this.style.fill;
         d3.select(this)
             .style('opacity', 0.5)
-            .style('fill', 'yellow');
+            .style('fill', 'grey');
     })
     .on('mouseout', function(d){
         d3.select(this)
@@ -98,18 +93,21 @@ var myChart = d3.select('#change').append('svg')
             .style('fill', tempColor);
     });
 
-myChart.transition()
-    .attr('height', function(d){
-        return yScale(d);
-    })
-    .attr('y', function(d){
-        return height - yScale(d);
-    })
-    .delay(function(d,i){
-        return i * 10;
-    })
-    .duration(1000)
-    .ease('elastic');
+
+    $('#change-btn').on('click', function(){
+        myChart.transition()
+            .attr('height', function(d){
+                return yScale(d);
+            })
+            .attr('y', function(d){
+                return height - yScale(d);
+            })
+            .delay(function(d,i){
+                return i * 10;
+            })
+            .duration(1000)
+            .ease('elastic');
+    });
 
 var vGuideScale = d3.scale.linear()
     .domain([0, d3.max(bardata)])
@@ -133,7 +131,7 @@ var hAxis = d3.svg.axis()
     .scale(xScale)
     .orient('bottom')
     .tickValues(xScale.domain().filter(function(d,i){
-        return !(i%(bardata.length/10));
+        return ['2006','2007','2008','2009','2010','2011','2012','2013','2014','2015'];
     }));
 var hGuide = d3.select('.changesvg').append('g');
     hAxis(hGuide);
@@ -179,10 +177,7 @@ d3.json('https://data.cityofboston.gov/resource/hda6-fnsh.json', function(data){
 var margin = { top: 30, right:30 , bottom:40, left:70 };
 
 var height = 400 -margin.top - margin.bottom,
-    width = 700 -margin.left - margin.right;
-var colors = d3.scale.linear()
-.domain([0, bardata.length*0.33, bardata.length*0.66, bardata.length])
-.range(['#85992C']);
+    width = 900 -margin.left - margin.right;
 
 var yScale = d3.scale.linear()
         .domain([0, d3.max(bardata)])
@@ -203,9 +198,7 @@ var myChart = d3.select('.changesvg')
     .attr('transform', 'translate('+ 73 +','+ margin.top +')')
     .selectAll('rect').data(bardata)
     .enter().append('rect')
-        .style('fill', function(d,i) {
-            return colors(i);
-        })
+        .style('fill', '#FF5255')
         .attr('width', xScale.rangeBand())
         .attr('height', 0)
         .attr('x', function(d,i) {
@@ -223,7 +216,7 @@ var myChart = d3.select('.changesvg')
         tempColor = this.style.fill;
         d3.select(this)
             .style('opacity', 0.5)
-            .style('fill', 'red');
+            .style('fill', 'grey');
     })
     .on('mouseout', function(d){
         d3.select(this)
@@ -231,18 +224,20 @@ var myChart = d3.select('.changesvg')
             .style('fill', tempColor);
     });
 
-myChart.transition()
-    .attr('height', function(d){
-        return yScale(d);
-    })
-    .attr('y', function(d){
-        return height - yScale(d);
-    })
-    .delay(function(d,i){
-        return i * 10;
-    })
-    .duration(1000)
-    .ease('elastic');
+    $('#change-btn').on('click', function(){
+        myChart.transition()
+            .attr('height', function(d){
+                return yScale(d);
+            })
+            .attr('y', function(d){
+                return height - yScale(d);
+            })
+            .delay(function(d,i){
+                return i * 10;
+            })
+            .duration(1000)
+            .ease('elastic');
+    });
 
 });
 

@@ -20,6 +20,12 @@ var y = d3.scale.linear().range([height, 0]);
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, 2]);
 
+var tooltip = d3.select('body').append('div')
+            .style('position', 'absolute')
+            .style('padding', '0 10px')
+            .style('background', 'white')
+            .style('opacity', 0);
+
 var svg = d3.select('svg')
     .append('svg')
         .attr('width', width + margin.left + margin.right)
@@ -34,6 +40,29 @@ var svg = d3.select('svg')
         .attr('r', 3.5)
         .attr('cx', function(d) { return x(d.date); })
         .attr('cy', function(d) { return y(2); })
-        .attr('fill', 'red');
+        .attr('fill', '#FF5255')
+
+        .on('mouseover', function(d) {
+            tooltip.transition()
+                .style('opacity', 0.9);
+
+            tooltip.html(d.businessname)
+                .attr('class','bye')
+                .style('left', (d3.event.pageX - 35) + 'px')
+                .style('top',  (d3.event.pageY - 30) + 'px');
+
+            tempColor = this.style.fill;
+            d3.select(this)
+                .style('opacity', 0.5)
+                .style('fill', 'white');
+        })
+
+        .on('mouseout', function(d) {
+            d3.select(this)
+                .style('opacity', 1)
+                .style('fill', tempColor);
+            d3.select('.bye')
+                .style('opacity', 0);
+        });
 
 });

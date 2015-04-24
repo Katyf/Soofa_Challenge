@@ -16,6 +16,9 @@
     <!-- endbuild -->
     <!-- build:js scripts/vendor/modernizr.js -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Concert+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 
@@ -25,17 +28,24 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+  <div id="header">
+    <h1>BOSTON'S FOOD & DRINK SCENE</h2>
+    <h3>an interactive data visualization app</h4>
+  </div>
 
   <div class="container">
-    <h2>Boston's Food & Drink Scene</h2>
-    <h4>An interactive data visualization app</h4>
     <div class="toggles">
-      <button class="btn" id="change-btn">View Change Over Time</button>
-      <button class="btn" id="map-btn">View by Location</button>
-      <button class="btn" id="timeline-btn">View Timeline</button>
+      <button id="filter">FILTERS:</button>
+      <button class="btn" id="map-btn">LOCATION</button>
+      <button class="btn" id="change-btn">CHANGE OVER TIME</button>
+      <button class="btn" id="timeline-btn">TIMELINE</button>
     </div>
     <section id="charts">
-      <h4 id="chart-title">A timeline of Boston's Active Food Establishment and Liquor Licenses</h4>
+      <h4 id="chart-title">Timeline of Boston's Active Food Establishment and Liquor Licenses</h4>
+      <div id="legend">
+        <div id="food-color"></div>Food Licenses
+        <div id="liquor-color"></div>Liquor Licenses
+      </div>
       <section class="chart" id="timeline"></section>
       <section class="chart" id="change"></section>
       <section class="chart" id="liquormap"></section>

@@ -20,6 +20,12 @@ var y = d3.scale.linear().range([height, 0]);
 var xAxis = d3.svg.axis().scale(x)
     .orient('bottom').ticks(5);
 
+var tooltip = d3.select('body').append('div')
+            .style('position', 'absolute')
+            .style('padding', '0 10px')
+            .style('background', 'white')
+            .style('opacity', 0);
+
 var svg = d3.select('#timeline')
     .append('svg')
         .attr('width', width + margin.left + margin.right)
@@ -37,7 +43,30 @@ var svg = d3.select('#timeline')
         .attr('r', 3.5)
         .attr('cx', function(d) { return x(d.date); })
         .attr('cy', function(d) { return y(1); })
-        .attr('fill', 'blue');
+        .attr('fill', '#03A9F4')
+
+        .on('mouseover', function(d) {
+            tooltip.transition()
+                .style('opacity', 0.9);
+
+            tooltip.html(d.businessname + ' - ' + d.date)
+                .attr('class','bye')
+                .style('left', (d3.event.pageX - 35) + 'px')
+                .style('top',  (d3.event.pageY - 30) + 'px');
+
+            tempColor = this.style.fill;
+            d3.select(this)
+                .style('opacity', 0.5)
+                .style('fill', 'white');
+        })
+
+        .on('mouseout', function(d) {
+            d3.select(this)
+                .style('opacity', 1)
+                .style('fill', tempColor);
+            d3.select('.bye')
+                .style('opacity', 0);
+        });
 
     svg.append('g')
         .attr('class', 'x axis')

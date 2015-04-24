@@ -46,6 +46,7 @@ d3.json('https://data.cityofboston.gov/resource/gb6y-34cq.json', function(data){
     h = 500,
     cw = 5;
 
+
     var nodes = [
           { name: 'Boston', num: boston},
           { name: 'Allston', num: allston},
@@ -87,8 +88,11 @@ d3.json('https://data.cityofboston.gov/resource/gb6y-34cq.json', function(data){
           .nodes(nodes)
           .links([])
           .gravity(0.09)
-          .charge(-200)
+          .charge(-300)
           .size([w,h]);
+    var colors = d3.scale.linear()
+        .domain([0, nodes.length*0.33, nodes.length*0.66, nodes.length])
+        .range(['#03A9F4', '#FF5255']);
 
     var link = myChart.selectAll('line')
           .data(links).enter().append('line')
@@ -106,8 +110,7 @@ d3.json('https://data.cityofboston.gov/resource/gb6y-34cq.json', function(data){
             return (d.num)/3;
           })
           .attr('fill', function(d,i){
-                if (i>0){ return 'blue'; }
-                else { return 'pink'; }
+                return colors(i);
           });
 
     node.append('text')
@@ -115,8 +118,8 @@ d3.json('https://data.cityofboston.gov/resource/gb6y-34cq.json', function(data){
             if (d.num>0){return d.name; }
           })
           .attr('fill', function(d,i){
-                if (i>0){ return 'gray'; }
-                else { return 'green'; }
+                if (i>0){ return 'black'; }
+                else { return 'white'; }
           })
           .attr('x', function(d,i){
                 if (i>0){ return cw + 4; }
@@ -145,5 +148,11 @@ d3.json('https://data.cityofboston.gov/resource/gb6y-34cq.json', function(data){
                 .attr('y2', function(d){ return d.target.y; });
     });
 
-    force.start();
+    $('#map-btn').on('click', function(){
+      force.start();
+    });
 });
+
+
+
+
