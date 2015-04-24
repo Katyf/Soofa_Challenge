@@ -47,7 +47,7 @@ var svg = d3.select('svg')
                 .style('opacity', 0.9);
 
             tooltip.html(d.businessname)
-                .attr('class','bye')
+                .attr('class','hi')
                 .style('left', (d3.event.pageX - 35) + 'px')
                 .style('top',  (d3.event.pageY - 30) + 'px');
 
@@ -61,8 +61,9 @@ var svg = d3.select('svg')
             d3.select(this)
                 .style('opacity', 1)
                 .style('fill', tempColor);
-            d3.select('.bye')
-                .style('opacity', 0);
+            d3.select('.hi')
+                .style('opacity', 0)
+                .attr('class', 'bye');
         });
 
 });

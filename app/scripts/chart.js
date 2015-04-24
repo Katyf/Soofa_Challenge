@@ -50,7 +50,7 @@ var svg = d3.select('#timeline')
                 .style('opacity', 0.9);
 
             tooltip.html(d.businessname + ' - ' + d.date)
-                .attr('class','bye')
+                .attr('class','hi')
                 .style('left', (d3.event.pageX - 35) + 'px')
                 .style('top',  (d3.event.pageY - 30) + 'px');
 
@@ -64,7 +64,8 @@ var svg = d3.select('#timeline')
             d3.select(this)
                 .style('opacity', 1)
                 .style('fill', tempColor);
-            d3.select('.bye')
+            d3.select('.hi')
+                .attr('class', 'bye')
                 .style('opacity', 0);
         });
 
