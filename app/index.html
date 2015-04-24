@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>soofa_coding_challenge</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+  <div class="container">
+    <h2>Boston's Food & Drink Scene</h2>
+    <h4>An interactive data visualization app</h4>
+    <div class="toggles">
+      <button class="btn" id="change-btn">View Change Over Time</button>
+      <button class="btn" id="map-btn">View by Location</button>
+      <button class="btn" id="timeline-btn">View Timeline</button>
+    </div>
+    <section id="charts">
+      <h4 id="chart-title">A timeline of Boston's Active Food Establishment and Liquor Licenses</h4>
+      <section class="chart" id="timeline"></section>
+      <section class="chart" id="change"></section>
+      <section class="chart" id="liquormap"></section>
+      <section class="chart" id="map"></section>
+
+    </section>
+
+  </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="scripts/chart.js"></script>
+        <script src="scripts/liquor.js"></script>
+        <script src="scripts/growth.js"></script>
+        <script src="scripts/map.js"></script>
+        <script src="scripts/liquor_map.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
