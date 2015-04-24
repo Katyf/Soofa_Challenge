@@ -130,7 +130,7 @@ var vGuide = d3.select('.changesvg').append('g');
 var hAxis = d3.svg.axis()
     .scale(xScale)
     .orient('bottom')
-    .tickValues(xScale.domain().filter(function(d,i){
+    .tickValues(xScale.domain(function(d,i){
         return ['2006','2007','2008','2009','2010','2011','2012','2013','2014','2015'];
     }));
 var hGuide = d3.select('.changesvg').append('g');
